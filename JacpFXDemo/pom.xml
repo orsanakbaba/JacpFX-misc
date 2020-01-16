@@ -22,7 +22,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>2.2</javafx.version>
-        <jacp.version>2.0.2</jacp.version>
+        <jacp.version>2.1</jacp.version>
+        <spring.version>4.2.3.RELEASE</spring.version>
     </properties>
     <build>
         <pluginManagement>

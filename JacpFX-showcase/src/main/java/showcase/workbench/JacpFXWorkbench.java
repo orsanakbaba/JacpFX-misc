@@ -42,6 +42,7 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.workbench.FXWorkbench;
+import showcase.util.ComponentIds;
 import showcase.util.PerspectiveIds;
 
 /**
@@ -68,6 +69,7 @@ public class JacpFXWorkbench implements FXWorkbench {
         layout.registerToolBar(ToolbarPosition.NORTH);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(true);
+
     }
 
     @Override
@@ -81,6 +83,7 @@ public class JacpFXWorkbench implements FXWorkbench {
 
 
 
+
     }
 
     private MenuItem createHelpItem() {
@@ -90,7 +93,8 @@ public class JacpFXWorkbench implements FXWorkbench {
             dialog.setDefaultButton(JACPDialogButton.OK);
             dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
             dialog.setOnOkAction((arg) -> this.context.hideModalDialog());
-            this.context.showModalDialog(dialog);
+           // this.context.showModalDialog(dialog);
+            this.context.send(PerspectiveIds.PERSPECTIVE_ONE +"." + ComponentIds.STATEFUL_CALLBACK,dialog);
         });
         return itemHelp;
     }
