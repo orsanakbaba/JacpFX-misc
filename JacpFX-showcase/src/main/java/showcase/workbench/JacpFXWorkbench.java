@@ -38,6 +38,7 @@ import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.controls.optionPane.JACPDialogButton;
 import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.context.Context;
@@ -57,10 +58,11 @@ import showcase.util.PerspectiveIds;
                 PerspectiveIds.PERSPECTIVE_TWO,
                 PerspectiveIds.PERSPECTIVE_ONE
         })
-public class JacpFXWorkbench implements FXWorkbench {
+public class JacpFXWorkbench implements FXWorkbench, FXComponent {
 
     @Resource
     private Context context;
+    private MenuItem itemHelp;
 
     @Override
     public void handleInitialLayout(final Message<Event, Object> action,
@@ -87,16 +89,25 @@ public class JacpFXWorkbench implements FXWorkbench {
     }
 
     private MenuItem createHelpItem() {
-        final MenuItem itemHelp = new MenuItem("Help");
+        itemHelp = new MenuItem("Help");
         itemHelp.setOnAction((event) -> {
             JACPOptionPane dialog = JACPDialogUtil.createOptionPane("Help", "Add some help text ");
             dialog.setDefaultButton(JACPDialogButton.OK);
             dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
             dialog.setOnOkAction((arg) -> this.context.hideModalDialog());
-           // this.context.showModalDialog(dialog);
-            this.context.send(PerspectiveIds.PERSPECTIVE_ONE +"." + ComponentIds.STATEFUL_CALLBACK,dialog);
+           this.context.showModalDialog(dialog);
+            //this.context.send(PerspectiveIds.PERSPECTIVE_ONE +"." + ComponentIds.STATEFUL_CALLBACK,dialog);
         });
         return itemHelp;
     }
 
+    @Override
+    public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Node handle(Message<Event, Object> message) throws Exception {
+        return null;
+    }
 }

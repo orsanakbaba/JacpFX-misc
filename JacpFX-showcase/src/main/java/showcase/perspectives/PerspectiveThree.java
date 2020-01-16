@@ -64,7 +64,7 @@ import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
 @Perspective(id = PerspectiveIds.PERSPECTIVE_THREE, name = "contactPerspective",
-        components = { ComponentIds.STATEFUL_CALLBACK},
+        components = { },
         //viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveThree implements FXPerspective {
