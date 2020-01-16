@@ -49,6 +49,7 @@ import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
 import showcase.ui.PerspectiveOptionButton;
 import showcase.ui.Perspectives;
+import showcase.util.ComponentIds;
 import showcase.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
