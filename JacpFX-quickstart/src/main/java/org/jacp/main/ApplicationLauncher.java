@@ -1,5 +1,5 @@
 /************************************************************************
- * 
+ *
  * Copyright (C) 2010 - 2012
  *
  * [ApplicationLauncher.java]
@@ -8,13 +8,13 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at 
+ * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0 
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  *
@@ -30,7 +30,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import org.jacp.project.launcher.AFXSpringLauncher;
+
+import org.jacpfx.rcp.workbench.FXWorkbench;
+import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
 
 /**
  * The application launcher containing the main method
@@ -38,7 +40,7 @@ import org.jacp.project.launcher.AFXSpringLauncher;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-public class ApplicationLauncher extends AFXSpringLauncher {
+public class ApplicationLauncher extends AFXSpringXmlLauncher {
 	private static final Logger log = Logger.getLogger(ApplicationLauncher.class
 			.getName());
 	public static final String[] STYLES= new String[2];
@@ -47,11 +49,26 @@ public class ApplicationLauncher extends AFXSpringLauncher {
 	private static final String[] BINARY_FILES={"/styles/style_light.bss","/styles/style_dark.bss"};
 
 	public ApplicationLauncher() {
-		super("main.xml");
+		super();
+	}
+
+	@Override
+	protected Class<? extends FXWorkbench> getWorkbenchClass() {
+		return null;
+	}
+
+	@Override
+	protected String[] getBasePackages() {
+		return new String[0];
+	}
+
+	@Override
+	public String getXmlConfig() {
+		return "main.xml";
 	}
 
 	/**
-	 * @param args
+	 * @param args empty
 	 */
 	public static void main(final String[] args) {
 		Application.launch(args);
