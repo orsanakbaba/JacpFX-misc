@@ -51,6 +51,7 @@ import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
 import showcase.ui.PerspectiveOptionButton;
 import showcase.ui.Perspectives;
+import showcase.util.ComponentIds;
 import showcase.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
@@ -67,7 +68,7 @@ import static showcase.util.PerspectiveIds.TARGET_CONTAINER_MAIN;
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
 @Perspective(id = PerspectiveIds.PERSPECTIVE_ONE, name = "contactPerspective",
-        components = {},
+        components = { },
         //viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveOne implements FXPerspective {

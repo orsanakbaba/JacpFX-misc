@@ -22,14 +22,21 @@
  ************************************************************************/
 package showcase.callback;
 
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javafx.event.Event;
 
 
+import javafx.scene.Node;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
+import org.jacpfx.controls.optionPane.JACPOptionPane;
 import org.jacpfx.rcp.component.CallbackComponent;
+import org.jacpfx.rcp.context.Context;
 import showcase.util.ComponentIds;
 
 /**
@@ -37,13 +44,31 @@ import showcase.util.ComponentIds;
  * @author Andy Moncsek
  *
  */
-@Component(id = ComponentIds.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = ComponentIds.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle")
 public class StatefulCallback implements CallbackComponent {
-	private Logger log = Logger.getLogger(StatefulCallback.class.getName());
+    @Resource
+    Context context;
+
+    private Logger log = Logger.getLogger(StatefulCallback.class.getName());
+
     @Override
     public Object handle(final Message<Event, Object> message) {
         log.info(message.getMessageBody().toString());
+
+        if (message.isMessageBodyTypeOf(JACPOptionPane.class)){
+            this.context.showModalDialog((JACPOptionPane) message.getMessageBody());
+        }
 		return "StatefulCallback - hello";
 	}
+
+    @PreDestroy
+    public void onPreDestroyComponent() {
+    }
+
+    @PostConstruct
+    public void onPostConstructComponent(final ResourceBundle resourceBundle) {
+        log.info(StatefulCallback.class.getSimpleName() + " PostConstruct");
+
+    }
 
 }
