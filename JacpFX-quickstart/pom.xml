@@ -26,6 +26,7 @@
 
         <jacp.version>2.1</jacp.version>
 
+
     </properties>
 
 
@@ -65,6 +66,7 @@
         </plugins>
     </build>
     <dependencies>
+
         <dependency>
             <groupId>org.jacpfx</groupId>
             <artifactId>jacpfx.API</artifactId>
@@ -121,6 +123,13 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jacpfx/JacpFXConcurrencyTools -->
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>JacpFXConcurrencyTools</artifactId>
+            <version>3.0-RC1</version>
         </dependency>
     </dependencies>
 </project>

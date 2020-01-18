@@ -34,6 +34,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.annotations.perspective.Perspective;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.api.util.ToolbarPosition;
@@ -42,7 +43,6 @@ import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
-import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
@@ -55,7 +55,7 @@ import org.jacpfx.rcp.util.FXUtil;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-@Perspective(id = "id01", name = "perspectiveOne", viewLocation = "/fxml/perspectiveOne.fxml", resourceBundleLocation = "bundles.languageBundle")
+@Perspective(id = "id01", name = "perspectiveOne", viewLocation = "/fxml/perspectiveOne.fxml", resourceBundleLocation = "bundles.languageBundle", components = {})
 public class PerspectiveOne implements FXPerspective {
 	@FXML
 	private GridPane gridPaneLeft;
@@ -112,7 +112,7 @@ public class PerspectiveOne implements FXPerspective {
 		toolbar.addOnEnd(pressMe);
 	}
 
-	@OnTearDown
+	@PreDestroy
 	/**
 	 * @OnTearDown annotated method will be executed when component is deactivated.
 	 * @param arg0

@@ -27,20 +27,24 @@ import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.SplitPaneBuilder;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.GridPaneBuilder;
 import javafx.scene.layout.Priority;
 
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.OnStart;
-import org.jacp.api.annotations.OnTearDown;
-import org.jacp.api.annotations.Perspective;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.componentLayout.PerspectiveLayout;
-import org.jacp.javafx.rcp.perspective.AFXPerspective;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.annotations.perspective.Perspective;
+
+import org.jacpfx.api.message.Message;
+
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
+import org.jacpfx.rcp.perspective.FXPerspective;
+import org.jacpfx.rcp.util.FXUtil;
 
 /**
  * A simple perspective defining a split pane
@@ -48,13 +52,13 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-@Perspective(id = "id02", name = "perspectiveTwo", resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
-public class PerspectiveTwo extends AFXPerspective {
+@Perspective(id = "id02", name = "perspectiveTwo", resourceBundleLocation = "bundles.languageBundle", localeID = "en_US", components = {})
+public class PerspectiveTwo implements FXPerspective {
 
 	@Override
-	public void handlePerspective(final IAction<Event, Object> action,
+	public void handlePerspective(final Message<Event, Object> action,
 			final PerspectiveLayout perspectiveLayout) {
-		if (action.getLastMessage().equals(MessageUtil.INIT)) {
+		if (action.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
 			final SplitPane mainLayout = SplitPaneBuilder.create()
 					.styleClass("vsplitpane").orientation(Orientation.VERTICAL)
 					.prefHeight(600).prefWidth(800).build();
@@ -87,7 +91,7 @@ public class PerspectiveTwo extends AFXPerspective {
 
 	}
 
-	@OnStart
+	@PostConstruct
 	/**
 	 * @OnStart annotated method will be executed when component is activated.
 	 * @param layout
@@ -98,7 +102,7 @@ public class PerspectiveTwo extends AFXPerspective {
 		// define toolbars and menu entries
 	}
 
-	@OnTearDown
+	@PreDestroy
 	/**
 	 * @OnTearDown annotated method will be executed when component is deactivated.
 	 * @param arg0
@@ -107,5 +111,7 @@ public class PerspectiveTwo extends AFXPerspective {
 		// define toolbars and menu entries when close perspective
 
 	}
+
+
 
 }
