@@ -38,6 +38,7 @@ import javafx.scene.text.TextBuilder;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.jacp.demo.constants.GlobalConstants;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
@@ -57,7 +58,9 @@ import static org.jacpfx.api.util.ToolbarPosition.*;
  * @author Andy Moncsek, Patrick Symmangk
  * 
  */
-@Workbench(id = "id1", name="workbench",perspectives = "id01")
+@Workbench(id = "id1", name="workbench", perspectives = {
+        GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE
+})
 public class ContactWorkbench implements FXWorkbench {
 
     private final String projectURL = "http://code.google.com/p/jacp/wiki/Documentation";

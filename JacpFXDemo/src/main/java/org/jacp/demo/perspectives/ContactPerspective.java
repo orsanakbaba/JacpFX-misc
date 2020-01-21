@@ -58,7 +58,7 @@ import static org.jacpfx.rcp.components.toolBar.JACPOptionButtonOrientation.*;
  *
  * @author Andy Moncsek, Patrick Symmangk
  */
-@Perspective(id = "id01", name = "contactPerspective",
+@Perspective(id =  GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, name = "contactPerspective",
         components = {
                 GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW,
                 GlobalConstants.ComponentConstants.COMPONENT_CHART_VIEW,

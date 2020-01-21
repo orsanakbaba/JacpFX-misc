@@ -37,6 +37,7 @@ import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.controls.optionPane.JACPDialogButton;
 import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.context.Context;
@@ -53,7 +54,7 @@ import quickstart.config.BasicConfig;
                 BasicConfig.PERSPECTIVE_TWO,
                 BasicConfig.PERSPECTIVE_ONE
         })
-public class JacpFXWorkbench implements FXWorkbench {
+public class JacpFXWorkbench implements FXWorkbench , FXComponent {
 
     @Resource
     private Context context;
@@ -88,4 +89,13 @@ public class JacpFXWorkbench implements FXWorkbench {
         return itemHelp;
     }
 
+    @Override
+    public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Node handle(Message<Event, Object> message) throws Exception {
+        return null;
+    }
 }
