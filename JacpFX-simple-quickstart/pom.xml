@@ -21,7 +21,8 @@
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jacp.version>2.0.2</jacp.version>
+        <jacp.version>2.1</jacp.version>
+        <spring.version>5.2.3.RELEASE</spring.version>
     </properties>
     <build>
         <plugins>
@@ -85,6 +86,68 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.API</artifactId>
+            <version>${jacp.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.JavaFX</artifactId>
+            <version>${jacp.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.JavaFXSpring</artifactId>
+            <version>${jacp.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.JavaFXControls</artifactId>
+            <version>${jacp.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jacpfx/JacpFXConcurrencyTools -->
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>JacpFXConcurrencyTools</artifactId>
+            <version>3.0-RC1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -116,7 +179,6 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.0-alpha1</version>
         </dependency>
-
 
         <dependency>
             <groupId>commons-net</groupId>

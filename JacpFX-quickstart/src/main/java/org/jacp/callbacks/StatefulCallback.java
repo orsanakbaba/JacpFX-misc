@@ -22,26 +22,27 @@
  ************************************************************************/
 package org.jacp.callbacks;
 
-import java.util.logging.Logger;
-
 import javafx.event.Event;
-
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.CallbackComponent;
-import org.jacp.api.annotations.OnStart;
-import org.jacp.api.annotations.OnTearDown;
-import org.jacp.javafx.rcp.component.AStatefulCallbackComponent;
 import org.jacp.spring.services.SimpleSpringBean;
+import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.message.Message;
+import org.jacpfx.rcp.component.CallbackComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-@CallbackComponent(id = "id003", name = "statefulCallback", active = false)
+import java.util.logging.Logger;
+
+
+
 /**
  * A Stateful JacpFX component.
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  *
  */
-public class StatefulCallback extends AStatefulCallbackComponent {
+@Component(id = "id003", name = "statefulCallback", active = false)
+public class StatefulCallback implements CallbackComponent {
 	private final Logger log = Logger.getLogger(StatefulCallback.class
 			.getName());
 	@Autowired
@@ -49,19 +50,21 @@ public class StatefulCallback extends AStatefulCallbackComponent {
 	private SimpleSpringBean simpleSpringBean;
 
 	@Override
-	public Object handleAction(final IAction<Event, Object> arg0) {
-		this.log.info(arg0.getLastMessage().toString());
+	public Object handle(final Message<Event, Object> arg0) {
+		this.log.info(arg0.getMessageBody().toString());
 		return "StatefulCallback - "+simpleSpringBean.sayHello();
 	}
-	
-	@OnStart
+
+	@PostConstruct
 	public void init() {
 		this.log.info("StatefulCallback start");
 	}
-	
-	@OnTearDown
+
+	@PreDestroy
 	public void cleanup(){
 		this.log.info("StatefulCallback stop");
 	}
+
+
 
 }

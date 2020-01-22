@@ -39,32 +39,40 @@ import javafx.scene.layout.AnchorPaneBuilder;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.Component;
-import org.jacp.api.annotations.OnStart;
-import org.jacp.api.annotations.OnTearDown;
-import org.jacp.javafx.rcp.component.AFXComponent;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.component.View;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.message.Message;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.context.Context;
+import org.jacpfx.rcp.message.MessageImpl;
+import org.jacpfx.rcp.util.FXUtil;
+import sun.misc.Contended;
 
-@Component(defaultExecutionTarget = "PTop", id = "id006", name = "componentTop", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+
 /**
  * Programmatic TopComponent
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  *
  */
-public class ComponentTop extends AFXComponent {
+@View(initialTargetLayoutId = "PTop", id = "id006", name = "componentTop", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+public class ComponentTop implements FXComponent {
 	private AnchorPane pane;
 	private TextField textField;
 	private final Logger log = Logger.getLogger(ComponentTop.class.getName());
 
+	@Resource
+	Context context;
 	@Override
 	/**
 	 * The handleAction method always runs outside the main application thread. You can create new nodes, execute long running tasks but you are not allowed to manipulate existing nodes here.
 	 */
-	public Node handleAction(final IAction<Event, Object> action) {
+	public Node handle(final Message<Event, Object> action) {
 		// runs in worker thread
-		if (action.getLastMessage().equals(MessageUtil.INIT)) {
+		if (action.getMessageBody().equals(FXUtil.MessageUtil.INIT)) {
 			return this.createUI();
 		}
 		return null;
@@ -74,18 +82,18 @@ public class ComponentTop extends AFXComponent {
 	/**
 	 * The postHandleAction method runs always in the main application thread.
 	 */
-	public Node postHandleAction(final Node arg0,
-			final IAction<Event, Object> action) {
+	public Node postHandle(final Node arg0,
+			final Message<Event, Object> action) {
 		// runs in FX application thread
-		if (action.getLastMessage().equals(MessageUtil.INIT)) {
+		if (action.getMessageBody().equals(FXUtil.MessageUtil.INIT)) {
 			this.pane = (AnchorPane) arg0;
 		} else {
-			this.textField.setText(action.getLastMessage().toString());
+			this.textField.setText(action.getMessageBody().toString());
 		}
 		return this.pane;
 	}
 
-	@OnStart
+	@PostConstruct
 	/**
 	 * The @OnStart annotation labels methods executed when the component switch from inactive to active state
 	 * @param arg0
@@ -95,7 +103,7 @@ public class ComponentTop extends AFXComponent {
 
 	}
 
-	@OnTearDown
+	@PreDestroy
 	/**
 	 * The @OnTearDown annotations labels methods executed when the component is set to inactive
 	 * @param arg0
@@ -114,10 +122,10 @@ public class ComponentTop extends AFXComponent {
 		final AnchorPane anchor = AnchorPaneBuilder.create()
 				.styleClass("roundedAnchorPaneFX").build();
 		final Label heading = LabelBuilder.create()
-				.text(this.getResourceBundle().getString("javafxCompTop"))
+				.text(context.getResourceBundle().getString("javafxCompTop"))
 				.alignment(Pos.CENTER).styleClass("propLabel").build();
 		final Button top = ButtonBuilder.create()
-				.text(this.getResourceBundle().getString("send")).layoutX(120)
+				.text(context.getResourceBundle().getString("send")).layoutX(120)
 				.onMouseClicked(this.getEventHandler()).alignment(Pos.CENTER)
 				.build();
 		this.textField = TextFieldBuilder.create().text("")
@@ -147,8 +155,9 @@ public class ComponentTop extends AFXComponent {
 				// fire component event "manually" with performAction(null) or
 				// set event handler direct to component
 				// onMouseClicked(getActionListener("id01.id003","hello stateful component").getListener())
-				ComponentTop.this.getActionListener("id01.id003",
-						"hello stateful component").performAction(arg0);
+				ComponentTop.this.context.send("id01.id003", "hello stateful component");
+
+
 			}
 		};
 	}

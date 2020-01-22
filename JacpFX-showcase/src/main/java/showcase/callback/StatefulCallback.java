@@ -27,8 +27,6 @@ import java.util.logging.Logger;
 
 import javafx.event.Event;
 
-
-import javafx.scene.Node;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;

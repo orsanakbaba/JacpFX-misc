@@ -9,7 +9,7 @@
     <artifactId>JacpFX-multiproject-perspectiveOne</artifactId>
     <packaging>jar</packaging>
     <version>1.2</version>
-    <name>${artifactId}</name>
+    <name>${project.artifactId}</name>
     <url>http://jacpfx.org</url>
     <developers>
         <developer>

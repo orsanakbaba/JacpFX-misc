@@ -34,18 +34,20 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import org.jacp.api.action.IAction;
-import org.jacp.api.componentLayout.IWorkbenchLayout;
-import org.jacp.api.util.ToolbarPosition;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.components.menuBar.JACPMenuBar;
-import org.jacp.javafx.rcp.components.modalDialog.JACPModalDialog;
-import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
-import org.jacp.javafx.rcp.controls.optionPane.JACPDialogButton;
-import org.jacp.javafx.rcp.controls.optionPane.JACPDialogUtil;
-import org.jacp.javafx.rcp.controls.optionPane.JACPOptionPane;
-import org.jacp.javafx.rcp.workbench.AFXWorkbench;
+
 import org.jacp.main.ApplicationLauncher;
+import org.jacpfx.api.componentLayout.WorkbenchLayout;
+import org.jacpfx.api.message.Message;
+import org.jacpfx.api.util.ToolbarPosition;
+import org.jacpfx.controls.optionPane.JACPDialogButton;
+import org.jacpfx.controls.optionPane.JACPDialogUtil;
+import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
+import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
+import org.jacpfx.rcp.components.toolBar.JACPToolBar;
+import org.jacpfx.rcp.util.FXUtil;
+import org.jacpfx.rcp.workbench.FXWorkbench;
 
 /**
  * A simple JacpFX workbench. Define basic UI settings like size, menus and
@@ -54,12 +56,13 @@ import org.jacp.main.ApplicationLauncher;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-public class Workbench extends AFXWorkbench {
+public class Workbench implements FXWorkbench {
 	private Stage stage;
 
 	@Override
-	public void handleInitialLayout(final IAction<Event, Object> action,
-			final IWorkbenchLayout<Node> layout, final Stage stage) {
+	public void handleInitialLayout(
+			final Message<Event, Object> action,
+			final WorkbenchLayout<Node> layout, final Stage stage) {
 		layout.setWorkbenchXYSize(1024, 600);
 		layout.registerToolBar(ToolbarPosition.NORTH);
 		layout.setStyle(StageStyle.DECORATED);
@@ -74,6 +77,7 @@ public class Workbench extends AFXWorkbench {
 		final Menu menuFile = new Menu("File");
 		final Menu menuStyles = new Menu("Styles");
 		menuFile.getItems().add(getHelpItem());
+		menuFile.getItems().add(getLangItem());
 		// add style selection
 		for (int i = 0; i < ApplicationLauncher.STYLES.length; i++) {
 			menuStyles.getItems().add(getStyle(i));
@@ -90,6 +94,16 @@ public class Workbench extends AFXWorkbench {
 
 		// show windowButtons
 		menu.registerWindowButtons();
+	}
+
+	private MenuItem getLangItem() {
+		final MenuItem menuItem = new MenuItem("ENG");
+		menuItem.setOnAction(arg0 -> {
+			//this.
+
+		});
+		return menuItem;
+
 	}
 
 	private Button getFXMLPerspectiveButton() {
