@@ -23,6 +23,7 @@
 package org.jacp.callbacks;
 
 import javafx.event.Event;
+
 import org.jacp.spring.services.SimpleSpringBean;
 import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -31,6 +32,7 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
 
 import java.util.logging.Logger;
 
@@ -64,7 +66,5 @@ public class StatefulCallback implements CallbackComponent {
 	public void cleanup(){
 		this.log.info("StatefulCallback stop");
 	}
-
-
 
 }
