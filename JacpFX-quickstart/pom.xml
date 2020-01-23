@@ -150,6 +150,7 @@
             <groupId>org.jacpfx</groupId>
             <artifactId>JacpFXConcurrencyTools</artifactId>
             <version>3.0-RC1</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 </project>
