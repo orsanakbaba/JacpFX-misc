@@ -23,6 +23,7 @@
 package org.jacp.perspectives;
 
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -32,6 +33,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
@@ -45,6 +48,7 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
+import org.jacpfx.rcp.perspective.AFXPerspective;
 import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
 
@@ -56,7 +60,14 @@ import org.jacpfx.rcp.util.FXUtil;
  * 
  */
 @Perspective(id = "id01", name = "perspectiveOne", viewLocation = "/fxml/perspectiveOne.fxml", resourceBundleLocation = "bundles.languageBundle", components = {})
-public class PerspectiveOne implements FXPerspective {
+
+public class PerspectiveOne  extends AFXPerspective implements FXPerspective{
+	private final static Log LOGGER = LogFactory
+			.getLog(PerspectiveOne.class);
+	public PerspectiveOne() {
+		LOGGER.info("PerspectiveOne creating");
+	}
+
 	@FXML
 	private GridPane gridPaneLeft;
 	@FXML

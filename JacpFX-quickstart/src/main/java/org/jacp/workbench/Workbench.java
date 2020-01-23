@@ -36,16 +36,19 @@ import javafx.stage.StageStyle;
 
 
 import org.jacp.main.ApplicationLauncher;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.controls.optionPane.JACPDialogButton;
 import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
+import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 
@@ -56,8 +59,12 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-public class Workbench implements FXWorkbench {
+@org.jacpfx.api.annotations.workbench.Workbench(name = "Workbench", id = "id0", perspectives = {"id01","id02"})
+public class Workbench implements FXWorkbench, FXComponent {
 	private Stage stage;
+
+	@Resource
+	Context context;
 
 	@Override
 	public void handleInitialLayout(
@@ -111,8 +118,8 @@ public class Workbench implements FXWorkbench {
 		perspectiveOne.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent arg0) {
-				Workbench.this.getActionListener("id01", "switch")
-						.performAction(arg0);
+				Workbench.this.context.send("id01", "switch");
+						//.performAction(arg0);
 
 			}
 		});
@@ -124,8 +131,8 @@ public class Workbench implements FXWorkbench {
 		perspectiveTwo.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent arg0) {
-				Workbench.this.getActionListener("id02", "switch")
-						.performAction(arg0);
+				Workbench.this.context.send("id02", "switch");
+						//.performAction(arg0);
 
 			}
 		});
@@ -161,14 +168,23 @@ public class Workbench implements FXWorkbench {
 
 					@Override
 					public void handle(final ActionEvent arg0) {
-						JACPModalDialog.getInstance().hideModalMessage();
+						Workbench.this.context.hideModalDialog();
 					}
 				});
-				JACPModalDialog.getInstance().showModalMessage(dialog);
+				Workbench.this.context.showModalDialog(dialog);
 
 			}
 		});
 		return itemHelp;
 	}
 
+	@Override
+	public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+		return null;
+	}
+
+	@Override
+	public Node handle(Message<Event, Object> message) throws Exception {
+		return null;
+	}
 }

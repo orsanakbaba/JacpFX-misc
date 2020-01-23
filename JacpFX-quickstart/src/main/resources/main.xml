@@ -10,11 +10,12 @@
 	<context:component-scan base-package="org.jacp"/>
     <context:annotation-config/>
 
+
 	<bean id="workbench" class="org.jacp.workbench.Workbench">
 		<property name="perspectives">
 			<list>
-				<ref bean="perspectiveTwo" />
 				<ref bean="perspectiveOne" />
+				<ref bean="perspectiveTwo" />
 			</list>
 		</property>
 	</bean>
@@ -26,6 +27,13 @@
 				<ref bean="componentBottom" />
 			</list>
 		</property>
+
+
+		<property name="id" value="id02"/>
+		<property name="name" value="perspectiveTwo"/>
+		<property name="resourceBundleLocation" value="bundles.languageBundle"/>
+		<property name="localeID" value="en_US"/>
+
 	</bean>
 
 	<bean id="perspectiveOne" class="org.jacp.perspectives.PerspectiveOne">
@@ -37,10 +45,18 @@
 				<ref bean="statelessCallback" />
 			</list>
 		</property>
+		<property name="id" value="id01"/>
+		<property name="name" value="perspectiveOne"/>
+		<property name="resourceBundleLocation" value="bundles.languageBundle"/>
+		<property name="localeID" value="en_US"/>
+		<property name="viewLocation" value="/fxml/perspectiveOne.fxml"/>
+
 	</bean>
 
 
-	<bean id="componentLeft" class="org.jacp.components.ComponentLeft" />
+	<bean id="componentLeft" class="org.jacp.components.ComponentLeft" >
+
+	</bean>
 
 	<bean id="componentRight" class="org.jacp.components.ComponentFXMLRight" />
 

@@ -31,6 +31,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
+import org.jacp.workbench.Workbench;
+import org.jacpfx.minimal.launcher.JacpFXApplicationLauncher;
+import org.jacpfx.rcp.workbench.AFXWorkbench;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
 
@@ -40,7 +43,7 @@ import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-public class ApplicationLauncher extends AFXSpringXmlLauncher {
+public class ApplicationLauncher extends JacpFXApplicationLauncher {
 	private static final Logger log = Logger.getLogger(ApplicationLauncher.class
 			.getName());
 	public static final String[] STYLES= new String[2];
@@ -54,18 +57,21 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
 
 	@Override
 	protected Class<? extends FXWorkbench> getWorkbenchClass() {
-		return null;
+		return Workbench.class;
 	}
+
 
 	@Override
 	protected String[] getBasePackages() {
-		return new String[0];
+		return new String[]{"org.jacp.perspectives", "org.jacp.components","org.jacp.callbacks"};
 	}
 
-	@Override
-	public String getXmlConfig() {
-		return "main.xml";
-	}
+
+
+	//	@Override
+//	public String getXmlConfig() {
+//		return "main.xml";
+//	}
 
 	/**
 	 * @param args empty

@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jacp</groupId>
-  <artifactId>JacpFX-quickstart</artifactId>
+  <artifactId>JacpFX-multiproject-services</artifactId>
   <version>1.05</version>
   <packaging>maven-archetype</packaging>
 
-  <name>JacpFX-quickstart</name>
+  <name>JacpFX-multiproject-services</name>
 
   <build>
     <extensions>

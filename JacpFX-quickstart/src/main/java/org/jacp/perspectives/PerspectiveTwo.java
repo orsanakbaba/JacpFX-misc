@@ -35,6 +35,8 @@ import javafx.scene.layout.GridPaneBuilder;
 import javafx.scene.layout.Priority;
 
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.annotations.perspective.Perspective;
@@ -43,6 +45,7 @@ import org.jacpfx.api.message.Message;
 
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
+import org.jacpfx.rcp.perspective.AFXPerspective;
 import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
 
@@ -52,8 +55,15 @@ import org.jacpfx.rcp.util.FXUtil;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-@Perspective(id = "id02", name = "perspectiveTwo", resourceBundleLocation = "bundles.languageBundle", localeID = "en_US", components = {})
-public class PerspectiveTwo implements FXPerspective {
+
+@Perspective(id = "id02", name = "perspectiveTwo", resourceBundleLocation = "bundles.languageBundle", localeID = "en_US",components = {})
+public class PerspectiveTwo extends AFXPerspective implements FXPerspective {
+
+	private final static Log LOGGER = LogFactory
+			.getLog(org.jacp.perspectives.PerspectiveTwo.class);
+	public PerspectiveTwo() {
+		LOGGER.info("PerspectiveTwo creating");
+	}
 
 	@Override
 	public void handlePerspective(final Message<Event, Object> action,
