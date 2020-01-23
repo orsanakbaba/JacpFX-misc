@@ -36,6 +36,7 @@ import javafx.stage.StageStyle;
 
 
 import org.jacp.main.ApplicationLauncher;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.api.util.ToolbarPosition;
