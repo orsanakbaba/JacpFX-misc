@@ -66,7 +66,8 @@ import static org.jacpfx.rcp.components.toolBar.JACPOptionButtonOrientation.*;
                 GlobalConstants.ComponentConstants.COMPONENT_TREE_VIEW,
                 GlobalConstants.CallbackConstants.CALLBACK_CREATOR,
                 GlobalConstants.CallbackConstants.CALLBACK_COORDINATOR,
-                GlobalConstants.CallbackConstants.CALLBACK_ANALYTICS},
+                GlobalConstants.CallbackConstants.CALLBACK_ANALYTICS,
+                },
         viewLocation = "/fxml/contactPerspective.fxml",
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US")

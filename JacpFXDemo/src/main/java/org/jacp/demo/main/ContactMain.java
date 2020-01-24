@@ -62,7 +62,7 @@ public class ContactMain extends AFXSpringXmlLauncher {
 
     @Override
     protected String[] getBasePackages() {
-        return new String[]{"org.jacp.demo.component","org.jacp.demo.callbacks","org.jacp.demo.perspective"};  //To change body of implemented methods use File | Settings | File Templates.
+        return new String[]{"org.jacp.demo.components","org.jacp.demo.callbacks","org.jacp.demo.perspectives"};  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
