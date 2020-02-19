@@ -155,7 +155,7 @@ public class ComponentLeft implements FXComponent {
 	}
 
 	private void sendMessage2StatefulComponent() {
-		this.context.send("id01.id003",
+		this.context.send("id003",
 				"hello from ComponentLeft to stateful component");
 	}
 

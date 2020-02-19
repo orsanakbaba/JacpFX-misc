@@ -104,7 +104,7 @@ public class ComponentFXMLBottom implements FXComponent {
 
 	@FXML
 	private void handleSend(final ActionEvent event) {
-		this.context.getEventHandler("id01.id004", "hello stateless component")
+		this.context.getEventHandler("id004", "hello stateless component")
 				.handle(event);
 	}
 

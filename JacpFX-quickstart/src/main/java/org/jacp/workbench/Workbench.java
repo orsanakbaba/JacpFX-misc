@@ -118,7 +118,7 @@ public class Workbench implements FXWorkbench, FXComponent {
 		perspectiveOne.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent arg0) {
-				Workbench.this.context.send("id01", "switch");
+				Workbench.this.context.send("id02", "switch");
 						//.performAction(arg0);
 
 			}
@@ -131,7 +131,7 @@ public class Workbench implements FXWorkbench, FXComponent {
 		perspectiveTwo.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent arg0) {
-				Workbench.this.context.send("id02", "switch");
+				Workbench.this.context.send("id01", "switch");
 						//.performAction(arg0);
 
 			}

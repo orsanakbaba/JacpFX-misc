@@ -155,7 +155,7 @@ public class ComponentTop implements FXComponent {
 				// fire component event "manually" with performAction(null) or
 				// set event handler direct to component
 				// onMouseClicked(getActionListener("id01.id003","hello stateful component").getListener())
-				ComponentTop.this.context.send("id01.id003", "hello stateful component");
+				ComponentTop.this.context.send("id003", "hello stateful component");
 
 
 			}

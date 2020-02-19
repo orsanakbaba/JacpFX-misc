@@ -35,6 +35,7 @@ import org.jacp.workbench.Workbench;
 import org.jacpfx.minimal.launcher.JacpFXApplicationLauncher;
 import org.jacpfx.rcp.workbench.AFXWorkbench;
 import org.jacpfx.rcp.workbench.FXWorkbench;
+import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
 import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
 
 /**
@@ -43,7 +44,7 @@ import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  * 
  */
-public class ApplicationLauncher extends JacpFXApplicationLauncher {
+public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
 	private static final Logger log = Logger.getLogger(ApplicationLauncher.class
 			.getName());
 	public static final String[] STYLES= new String[2];
@@ -56,6 +57,11 @@ public class ApplicationLauncher extends JacpFXApplicationLauncher {
 	}
 
 	@Override
+	protected Class<?>[] getConfigClasses() {
+		return new Class<?>[]{BasicConfig.class};
+	}
+
+	@Override
 	protected Class<? extends FXWorkbench> getWorkbenchClass() {
 		return Workbench.class;
 	}
@@ -63,15 +69,11 @@ public class ApplicationLauncher extends JacpFXApplicationLauncher {
 
 	@Override
 	protected String[] getBasePackages() {
-		return new String[]{"org.jacp.perspectives", "org.jacp.components","org.jacp.callbacks"};
+		return new String[]{"org.jacp.perspectives", "org.jacp.components","org.jacp.callbacks","org.jacp.spring.services"};
 	}
 
 
 
-	//	@Override
-//	public String getXmlConfig() {
-//		return "main.xml";
-//	}
 
 	/**
 	 * @param args empty

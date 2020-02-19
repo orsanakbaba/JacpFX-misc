@@ -56,7 +56,7 @@ import org.jacpfx.rcp.util.FXUtil;
  * 
  */
 
-@Perspective(id = "id02", name = "perspectiveTwo", resourceBundleLocation = "bundles.languageBundle", localeID = "en_US",components = {"id006","id005"})
+@Perspective(id = "id02", name = "perspectiveTwo", resourceBundleLocation = "bundles.languageBundle", localeID = "en_US",components = {"id006","id005","id003","id004"})
 public class PerspectiveTwo extends AFXPerspective implements FXPerspective {
 
 	private final static Log LOGGER = LogFactory
