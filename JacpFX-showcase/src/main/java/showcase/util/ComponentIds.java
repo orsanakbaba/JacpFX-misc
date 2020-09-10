@@ -30,8 +30,8 @@ package showcase.util;
  */
 public class ComponentIds {
 
-    public static final String COMPONENT_LEFT       = "id002";
-    public static final String COMPONENT_RIGHT      = "id003";
-    public static final String STATELESS_CALLBACK   = "id004";
-    public static final String STATEFUL_CALLBACK    = "id005";
+    public static final String COMPONENT_LEFT = "id002";
+    public static final String COMPONENT_RIGHT = "id003";
+    public static final String STATELESS_CALLBACK = "id004";
+    public static final String STATEFUL_CALLBACK = "id005";
 }

@@ -69,15 +69,14 @@ import static javafx.scene.layout.Priority.ALWAYS;
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveTwo implements FXPerspective {
 
+    @Resource
+    public Context context;
     @FXML
     private HBox contentTop;
     @FXML
     private BorderPane contentBottom;
     @FXML
     private Button errorButton;
-
-    @Resource
-    public Context context;
 
     @Override
     public void handlePerspective(final Message<Event, Object> action,
@@ -123,20 +122,20 @@ public class PerspectiveTwo implements FXPerspective {
 
         Button pressMe = new Button("press me");
         pressMe.setOnAction((event) -> {
-            // create a modal dialog
-            JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
-            dialog.setDefaultButton(JACPDialogButton.OK);
-            dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
-            dialog.setOnOkAction(new EventHandler<ActionEvent>() {
+                    // create a modal dialog
+                    JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
+                    dialog.setDefaultButton(JACPDialogButton.OK);
+                    dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
+                    dialog.setOnOkAction(new EventHandler<ActionEvent>() {
 
-                @Override
-                public void handle(ActionEvent arg0) {
-                    context.hideModalDialog();
+                        @Override
+                        public void handle(ActionEvent arg0) {
+                            context.hideModalDialog();
+                        }
+                    });
+                    context.showModalDialog(dialog);
+
                 }
-            });
-            context.showModalDialog(dialog);
-
-        }
         );
         toolbar.addAllOnEnd(pressMe, options);
     }

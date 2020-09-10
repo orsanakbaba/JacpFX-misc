@@ -49,7 +49,6 @@ import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
 import showcase.ui.PerspectiveOptionButton;
 import showcase.ui.Perspectives;
-import showcase.util.ComponentIds;
 import showcase.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
@@ -64,7 +63,7 @@ import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
 @Perspective(id = PerspectiveIds.PERSPECTIVE_THREE, name = "contactPerspective",
-        components = { },
+        components = {},
         //viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveThree implements FXPerspective {
@@ -94,7 +93,7 @@ public class PerspectiveThree implements FXPerspective {
             // Register root component
             perspectiveLayout.registerRootComponent(mainLayout);
             // register left menu
-            perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_LEFT , leftMenu);
+            perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_LEFT, leftMenu);
             // register main content
             perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_MAIN, mainContent);
         }
@@ -121,20 +120,20 @@ public class PerspectiveThree implements FXPerspective {
         Button pressMe = new Button("press me");
         JACPOptionButton options = new PerspectiveOptionButton(layout, context, "Perspectives", Perspectives.PERSPECTIVE_3);
         pressMe.setOnAction((event) -> {
-            // create a modal dialog
-            JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
-            dialog.setDefaultButton(JACPDialogButton.OK);
-            dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
-            dialog.setOnOkAction(new EventHandler<ActionEvent>() {
+                    // create a modal dialog
+                    JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
+                    dialog.setDefaultButton(JACPDialogButton.OK);
+                    dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
+                    dialog.setOnOkAction(new EventHandler<ActionEvent>() {
 
-                @Override
-                public void handle(ActionEvent arg0) {
-                    context.hideModalDialog();
+                        @Override
+                        public void handle(ActionEvent arg0) {
+                            context.hideModalDialog();
+                        }
+                    });
+                    context.showModalDialog(dialog);
+
                 }
-            });
-            context.showModalDialog(dialog);
-
-        }
         );
         toolbar.addAllOnEnd(pressMe, options);
     }

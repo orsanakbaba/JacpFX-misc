@@ -25,7 +25,6 @@ package showcase.main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
 import showcase.workbench.JacpFXWorkbench;
@@ -39,6 +38,13 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
 
 
     public ApplicationLauncher() {
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        Application.launch(args);
     }
 
     @Override
@@ -56,13 +62,6 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
         return new String[]{"showcase"};
     }
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
-
     @Override
     public void postInit(Stage stage) {
         Scene scene = stage.getScene();
@@ -71,7 +70,7 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
                 ApplicationLauncher.class.getResource("/styles/style.css")
                         .toExternalForm(),
                 ApplicationLauncher.class.getResource("/styles/showcase.css")
-                .toExternalForm());
+                        .toExternalForm());
     }
 
 }

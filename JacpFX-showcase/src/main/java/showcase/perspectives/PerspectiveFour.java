@@ -49,7 +49,6 @@ import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
 import showcase.ui.PerspectiveOptionButton;
 import showcase.ui.Perspectives;
-import showcase.util.ComponentIds;
 import showcase.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
@@ -121,20 +120,20 @@ public class PerspectiveFour implements FXPerspective {
         Button pressMe = new Button("press me");
         JACPOptionButton options = new PerspectiveOptionButton(layout, context, "Perspectives", Perspectives.PERSPECTIVE_4);
         pressMe.setOnAction((event) -> {
-            // create a modal dialog
-            JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
-            dialog.setDefaultButton(JACPDialogButton.OK);
-            dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
-            dialog.setOnOkAction(new EventHandler<ActionEvent>() {
+                    // create a modal dialog
+                    JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
+                    dialog.setDefaultButton(JACPDialogButton.OK);
+                    dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
+                    dialog.setOnOkAction(new EventHandler<ActionEvent>() {
 
-                @Override
-                public void handle(ActionEvent arg0) {
-                    context.hideModalDialog();
+                        @Override
+                        public void handle(ActionEvent arg0) {
+                            context.hideModalDialog();
+                        }
+                    });
+                    context.showModalDialog(dialog);
+
                 }
-            });
-            context.showModalDialog(dialog);
-
-        }
         );
         toolbar.addAllOnEnd(pressMe, options);
     }

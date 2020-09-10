@@ -1,5 +1,5 @@
 /************************************************************************
- * 
+ *
  * Copyright (C) 2010 - 2012
  *
  * [StatefulCallback.java]
@@ -22,11 +22,7 @@
  ************************************************************************/
 package showcase.callback;
 
-import java.util.ResourceBundle;
-import java.util.logging.Logger;
-
 import javafx.event.Event;
-
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -37,10 +33,13 @@ import org.jacpfx.rcp.component.CallbackComponent;
 import org.jacpfx.rcp.context.Context;
 import showcase.util.ComponentIds;
 
+import java.util.ResourceBundle;
+import java.util.logging.Logger;
+
 /**
  * a stateful JacpFX component
- * @author Andy Moncsek
  *
+ * @author Andy Moncsek
  */
 @Component(id = ComponentIds.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle")
 public class StatefulCallback implements CallbackComponent {
@@ -53,11 +52,11 @@ public class StatefulCallback implements CallbackComponent {
     public Object handle(final Message<Event, Object> message) {
         log.info(message.getMessageBody().toString());
 
-        if (message.isMessageBodyTypeOf(JACPOptionPane.class)){
+        if (message.isMessageBodyTypeOf(JACPOptionPane.class)) {
             this.context.showModalDialog((JACPOptionPane) message.getMessageBody());
         }
-		return "StatefulCallback - hello";
-	}
+        return "StatefulCallback - hello";
+    }
 
     @PreDestroy
     public void onPreDestroyComponent() {

@@ -43,7 +43,6 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.workbench.FXWorkbench;
-import showcase.util.ComponentIds;
 import showcase.util.PerspectiveIds;
 
 /**
@@ -58,6 +57,7 @@ import showcase.util.PerspectiveIds;
                 PerspectiveIds.PERSPECTIVE_TWO,
                 PerspectiveIds.PERSPECTIVE_ONE
         })
+
 public class JacpFXWorkbench implements FXWorkbench, FXComponent {
 
     @Resource
@@ -84,8 +84,6 @@ public class JacpFXWorkbench implements FXWorkbench, FXComponent {
         layout.getRegisteredToolBar(ToolbarPosition.NORTH).add(new Button("WORKBENCH"));
 
 
-
-
     }
 
     private MenuItem createHelpItem() {
@@ -95,7 +93,7 @@ public class JacpFXWorkbench implements FXWorkbench, FXComponent {
             dialog.setDefaultButton(JACPDialogButton.OK);
             dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
             dialog.setOnOkAction((arg) -> this.context.hideModalDialog());
-           this.context.showModalDialog(dialog);
+            this.context.showModalDialog(dialog);
             //this.context.send(PerspectiveIds.PERSPECTIVE_ONE +"." + ComponentIds.STATEFUL_CALLBACK,dialog);
         });
         return itemHelp;
